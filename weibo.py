@@ -14,16 +14,10 @@ import config
 
 url = 'https://s.weibo.com/top/summary'
 
-config = config.config()
-
-db = config.db
-user = config.user
-passwd = config.passwd
-
 
 class Weibo(threading.Thread):
 
-    def __init__(self, thread_name='spider', fresh_time=60):
+    def __init__(self, config, thread_name='spider', fresh_time=60):
         super(Weibo, self).__init__(name=thread_name)
         self._data = {}
         # self._save_time = save_time
@@ -33,6 +27,7 @@ class Weibo(threading.Thread):
         self.class_name = 'weibo'   # 文件夹分类名
         self._fresh_time = fresh_time   # 抓取间隔
         self._save_time = '99'  # 初始化储存时间
+        self._config = config
 
     def _binary_fall_back(self, init=0):
         i = init
@@ -240,8 +235,8 @@ class Weibo(threading.Thread):
         '''
         储存到数据库
         '''
-        op = sql.Operation(db=db, user=user,
-                           passwd=passwd)
+        op = sql.Operation(db=self._config.db, user=self._config.user,
+                           passwd=self._config.passwd)
         date = time.strftime('%Y-%m-%d', time.localtime())
         for key in self._data:  # all hash value
             if not op.check_it(key):  # first store

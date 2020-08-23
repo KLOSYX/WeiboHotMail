@@ -1,10 +1,12 @@
 import weibo
 import mail
 import time
+import config
 
 def main():
-    myWeibo = weibo.Weibo()
-    myMail = mail.Mail()
+    myConfig = config.Config()
+    myWeibo = weibo.Weibo(myConfig)
+    myMail = mail.Mail(myConfig)
     thread_pool = [myWeibo, myMail]
     for t in thread_pool:
         t.start()
