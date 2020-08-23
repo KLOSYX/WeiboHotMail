@@ -135,18 +135,18 @@ class Weibo(threading.Thread):
         '''
         m2 = hashlib.md5()
         if element is not None:
-            formated = self.format_each(element)
-            m2.update(formated['description'].encode('utf8'))
+            formatted = self.format_each(element)
+            m2.update(formatted['description'].encode('utf8'))
             hash_value = m2.hexdigest()
             if hash_value in self._data:
                 # 更新last_time
                 self._data[hash_value]['last_time'] = self._local_time()
-                if int(formated['rank']) < int(self._data[hash_value]['rank']):  # top rank
-                    self._data[hash_value]['rank'] = formated['rank']
-                if int(formated['index']) > int(self._data[hash_value]['index']):  # highest index
-                    self._data[hash_value]['index'] > formated['index']
+                if int(formatted['rank']) < int(self._data[hash_value]['rank']):  # top rank
+                    self._data[hash_value]['rank'] = formatted['rank']
+                if int(formatted['index']) > int(self._data[hash_value]['index']):  # highest index
+                    self._data[hash_value]['index'] > formatted['index']
             else:
-                self._data[hash_value] = formated  # 将discription的哈希值作为标记
+                self._data[hash_value] = formatted  # 将discription的哈希值作为标记
         return
 
     def _local_time(self, H=True, M=True):
@@ -167,9 +167,9 @@ class Weibo(threading.Thread):
         element = []
         for item in top_list:  # 循环热搜
             if item is not None:
-                formated = self.process_each(item)
-                if formated is not None:
-                    element.append(formated)
+                formatted = self.process_each(item)
+                if formatted is not None:
+                    element.append(formatted)
         return element
 
     def run(self):
