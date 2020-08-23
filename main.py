@@ -11,6 +11,7 @@ def main():
         time.sleep(10)
     for t in thread_pool:
         t.join()
+    print('###Everything has been done, now you can exit.###\n')
     while True:
          time.sleep(1)
     

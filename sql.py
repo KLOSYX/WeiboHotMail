@@ -100,13 +100,3 @@ class Operation(object):
         self.db.close()
         # 关闭数据库连接
         self.conn.close()
-
-# def main():
-#     data = """
-#     '7', 'https://baidu.comcc/sdlkoicu', '你好世界', '27789', '新', '20141231050505', '20201231050507'
-#     """
-#     #insert_to_database(data)
-#     update('67789602', '20201231050522')
-
-# if __name__ == "__main__":
-#     main()
