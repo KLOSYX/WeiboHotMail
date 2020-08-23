@@ -7,8 +7,8 @@ from email.header import Header
 import time
 import log
 import threading
-# 用于构建邮件头
 import config
+# 用于构建邮件头
 
 # 发信方的信息：发信邮箱，QQ 邮箱授权码
 config = config.config()
@@ -57,7 +57,7 @@ class Mail(threading.Thread):
                 now = time.strftime('%H', time.localtime())
                 if(today != self.day and now == self.send_time):
                 # if(True):
-                    op = sql.Operation(db='weibo', user='weibo', passwd='weibo')
+                    op = sql.Operation(db=config.db, user=config.user, passwd=config.passwd)
                     res = op.get_top_hot(today, self.top)
                     del op
                     if res:
@@ -73,7 +73,7 @@ class Mail(threading.Thread):
                 return
             
             except Exception as ex:
-                print(ex)
+                log.logging.error(ex)
                 exit(1)
                 
     def msg_format(self, data):
