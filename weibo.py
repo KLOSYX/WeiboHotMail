@@ -53,7 +53,7 @@ class Weibo(threading.Thread):
         while True:
             while i < 3:
                 try:
-                    time.sleep(10. * np.random.random())
+                    time.sleep(10. * np.random.rand())
                     respon = requests.get(
                         url, timeout=time_out, headers=headers)
                     if respon.status_code != 200:

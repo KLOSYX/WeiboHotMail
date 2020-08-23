@@ -1,5 +1,19 @@
 import pymysql
 
+# database setting
+'''
+CREATE TABLE `weibo` (
+  `hash` char(32) NOT NULL,
+  `rank` tinyint(11) NOT NULL,
+  `url` text NOT NULL,
+  `descr` text NOT NULL,
+  `hot` bigint(11) NOT NULL,
+  `tag` varchar(10) DEFAULT NULL,
+  `cre` datetime NOT NULL,
+  `las` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+'''
+
 
 class DB():
     def __init__(self, host='localhost', port=3306, db='', user='root', passwd='root', charset='utf8'):
